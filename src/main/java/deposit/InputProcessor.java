@@ -14,21 +14,26 @@ public class InputProcessor {
         Map<String, Object> map = new HashMap<>();
 
         System.out.println(
-                "Choose one of the currencies offered for your deposit: " +
+                "Choose one of the currencies offered for your deposit: \n" +
                 "USD,\n" +
-                "UAN,\n" +
+                "UAH,\n" +
                 "EUR");
         String currency = scanner.nextLine();
         switch (currency){
             case "EUR":
-                return Map.of("currency", FiatCurrency.EUR);
+                map.put("currency", FiatCurrency.EUR);
+                return map;
+                //return Map.of("currency", FiatCurrency.EUR);
             case "USD":
-                return Map.of("currency", FiatCurrency.USD);
-            case "UAN":
-                return Map.of("currency", FiatCurrency.UAH);
+                map.put("currency", FiatCurrency.USD);
+                return map;
+            case "UAH":
+                map.put("currency", FiatCurrency.UAH);
+                return map;
             default:
                 throw new Exception ("Invalid currency was entered");
         }
-
     }
+
+
 }

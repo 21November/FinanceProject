@@ -9,6 +9,7 @@ import users.domain.User;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 public class UserHandler {
 
@@ -53,7 +54,8 @@ public class UserHandler {
         );
 
         UserMenu userMenu = new UserMenu();
-        userMenu.run();
+        userMenu.run(user);
 
     }
+
 }

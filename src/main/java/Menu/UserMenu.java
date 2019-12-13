@@ -1,6 +1,7 @@
 package Menu;
 
 import deposit.aplication.DepositHandler;
+import users.domain.User;
 
 import java.sql.SQLException;
 import java.util.Scanner;
@@ -21,7 +22,7 @@ public class UserMenu {
 
 
 
-    public void run(){
+    public void run(User user){
 
         boolean flag = true;
         while (flag){
@@ -29,7 +30,8 @@ public class UserMenu {
             out.println(
                     "Please enter one of the next options:\n" +
                             "1 Create deposit\n" +
-                            "2 Exit\n" +
+                            "2 Get all deposits\n" +
+                            "3 Exit\n" +
                             "Chosen option: "
             );
 
@@ -39,9 +41,12 @@ public class UserMenu {
             try {
                 switch (option){
                     case 1:
-                        this.depositHandler.createDeposit();
+                        this.depositHandler.createDeposit(user);
                         break;
                     case 2:
+                        this.depositHandler.getDeposits();
+                        break;
+                    case 3:
                         flag = false;
                         break;
                 }

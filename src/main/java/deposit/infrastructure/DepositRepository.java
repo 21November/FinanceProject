@@ -20,30 +20,24 @@ public class DepositRepository implements IRepository<Deposit> {
     public void insert(Deposit deposit) {
         try {
             Statement statement = this.connection.createStatement();
+            String query = String.format(
+                "INSERT INTO deposits" +
+                "(id, balance, currency, createDate, editDate, user_id)" +
+                "VALUES('%s', %s, '%s', '%s', '%s', '%s')",
+                deposit.id.toString(),
+                Double.toString(deposit.balance),
+                deposit.currency.name(),
+                deposit.createDate,
+                deposit.editDate,
+                deposit.userId
+            );
+            System.out.println(query);
             statement.executeUpdate(
-                    String.format
-                            (
-                                    "INSERT INTO deposits" +
-                                            "(" +
-                                            "id, " +
-                                            "balance, " +
-                                            "currency, " +
-                                            "createDate, " +
-                                            "editDate)" +
-                                            "VALUES('%s', %f, '%s', '%s', " +
-                                            "'%s')",
-                                    deposit.id,
-                                    deposit.balance,
-                                    deposit.currency,
-                                    deposit.createDate,
-                                    deposit.createDate
-                            )
+                    query
             );
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        //"user_id, " +
-        //"loan_id, " +
     }
 
     @Override
@@ -58,7 +52,28 @@ public class DepositRepository implements IRepository<Deposit> {
 
     @Override
     public List<Deposit> getAll() {
-        return null;
+        List<Deposit> users = new ArrayList<Deposit>();
+        try {
+            Statement statement = this.connection.createStatement();
+            ResultSet cursor = statement.executeQuery(
+                    "SELECT * FROM deposits"
+            );
+
+            ResultSetMetaData md = cursor.getMetaData();
+            int columns = md.getColumnCount();
+
+            while (cursor.next()){
+                Map<String, Object> row = new HashMap<>(columns);
+                for(int i = 1; i <= columns; ++i){
+                    row.put(md.getColumnName(i), cursor.getString(i));
+                }
+
+                users.add(Deposit.fromRowTable(row));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return users;
     }
 
     @Override

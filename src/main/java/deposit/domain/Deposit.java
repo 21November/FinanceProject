@@ -6,9 +6,11 @@ import halpers.domain.FiatCurrency;
 
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
+
 
 public class Deposit extends Domain {
     public UUID id;
@@ -16,6 +18,7 @@ public class Deposit extends Domain {
     public FiatCurrency currency;
     public Timestamp createDate;
     public Timestamp editDate;
+    public UUID userId;
 
     public Deposit() {
     }
@@ -24,29 +27,47 @@ public class Deposit extends Domain {
             UUID id,
             double balance,
             FiatCurrency currency,
-            Timestamp createDate
+            Timestamp createDate,
+            Timestamp editDate,
+            UUID userId
+
     ) {
         this.id = id;
         this.balance = balance;
         this.currency = currency;
         this.createDate = createDate;
+        this.editDate = editDate;
+        this.userId = userId;
     }
 
     public static Deposit fromJSON(Map map){
+        System.out.println("Deposit 1");
         return new Deposit(
                 UUID.randomUUID(),
                 0,
                 (FiatCurrency) map.get("currency"),
-                new Timestamp(1)
-        );
+                Timestamp.valueOf(LocalDateTime.now()),
+                null,
+                UUID.fromString(map.get("userId").toString())
 
+        );
     }
 
-    public static Deposit fromMap(){
-        //в репозироии делаем запрос к базе данных
-        //курсор - превращается в мап
-        //после создаем обьект депозита
-        return null;
+    public static Deposit fromRowTable(Map map) {
+        Timestamp editDate;
+        if (map.get("editDate") != null){
+            editDate = Timestamp.valueOf(map.get("editDate").toString());
+        } else {
+            editDate = null;
+        }
+
+        return new Deposit(
+                UUID.fromString(map.get("id").toString()),
+                Double.valueOf(map.get("balance").toString()),
+                FiatCurrency.valueOf(map.get("currency").toString()) ,
+                Timestamp.valueOf(map.get("createDate").toString()),
+                editDate,
+                UUID.fromString(map.get("user_id").toString()));
     }
 
     @Override
