@@ -3,6 +3,7 @@ package deposit.aplication.services;
 import deposit.domain.Deposit;
 import deposit.infrastructure.DepositRepository;
 import halpers.domain.FiatCurrency;
+import users.domain.User;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -17,15 +18,20 @@ public class DepositService {
     }
 
     public void addDeposit(Map<String, Object> map) {
-        System.out.println("Deposit Service1");
         Deposit deposit = Deposit.fromJSON(map);
-        System.out.println("Deposit Service2");
 
-        depositRepository.insert(deposit);
-        System.out.println("Deposit Service3");
+        this.depositRepository.insert(deposit);
     }
 
-    public List<Deposit> getUsers() {
+    public List<Deposit> getDeposits() {
         return this.depositRepository.getAll();
+    }
+
+    public void editDepositReplenishment(User user, double sum) {
+        this.depositRepository.updateDepositReplenishment(user, sum);
+    }
+
+    public void editDepositReduction(User user, double sum) {
+        this.depositRepository.updateDepositReduction(user, sum);
     }
 }

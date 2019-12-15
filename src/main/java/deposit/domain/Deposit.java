@@ -54,13 +54,15 @@ public class Deposit extends Domain {
     }
 
     public static Deposit fromRowTable(Map map) {
-        Timestamp editDate;
-        if (map.get("editDate") != null){
-            editDate = Timestamp.valueOf(map.get("editDate").toString());
-        } else {
-            editDate = null;
-        }
+        System.out.println("method fromROwTable 1");
+        Timestamp editDate = Timestamp.valueOf(LocalDateTime.now());
+//        if (map.get("editDate") != null){
+//            editDate = Timestamp.valueOf(map.get("editDate").toString());
+//        } else {
+//            editDate = null;
+//        }
 
+        System.out.println("method fromROwTable 2");
         return new Deposit(
                 UUID.fromString(map.get("id").toString()),
                 Double.valueOf(map.get("balance").toString()),

@@ -10,7 +10,7 @@ public class Main {
         TableCreate tableCreate = new TableCreate();
 
         //tableCreate.tableDelete();
-        tableCreate.createTableUsers();
+        //tableCreate.createTableUsers();
 
         MainMenu menu = new MainMenu();
         menu.run();

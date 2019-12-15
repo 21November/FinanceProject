@@ -19,17 +19,15 @@ public class DepositHandler {
 
 
     public void createDeposit(User user) throws Exception {
-        System.out.println("Deposit Handler 1");
         Map<String, Object> map = InputProcessor.createDeposit();
 
         map.put("userId", user.id.toString());
-        System.out.println("Deposit Handler 2");
         this.depositService.addDeposit(map);
         System.out.println("Deposit create");
     }
 
     public void getDeposits() {
-        List<Deposit> deposits = this.depositService.getUsers();
+        List<Deposit> deposits = this.depositService.getDeposits();
         for (int i = 0; i < deposits.size(); i++){
             System.out.println("Deposit{" +
                     "id=" + deposits.get(i).id +
@@ -40,5 +38,19 @@ public class DepositHandler {
                     '}'
             );
         }
+    }
+
+    public void replenishDeposit(User user) {
+        double sum = InputProcessor.replenishDeposit();
+
+        this.depositService.editDepositReplenishment(user, sum);
+        System.out.println("Balance increased");
+    }
+
+    public void withdrawalFromDeposit(User user) {
+        double sum = InputProcessor.withdrawalFromDeposit();
+
+        this.depositService.editDepositReduction(user, sum);
+        System.out.println("Balance reduced");
     }
 }

@@ -2,6 +2,7 @@ package deposit.infrastructure;
 
 import deposit.domain.Deposit;
 import halpers.IRepository;
+import users.domain.User;
 
 import java.sql.*;
 import java.util.*;
@@ -52,7 +53,7 @@ public class DepositRepository implements IRepository<Deposit> {
 
     @Override
     public List<Deposit> getAll() {
-        List<Deposit> users = new ArrayList<Deposit>();
+        List<Deposit> deposits = new ArrayList<Deposit>();
         try {
             Statement statement = this.connection.createStatement();
             ResultSet cursor = statement.executeQuery(
@@ -63,22 +64,60 @@ public class DepositRepository implements IRepository<Deposit> {
             int columns = md.getColumnCount();
 
             while (cursor.next()){
-                Map<String, Object> row = new HashMap<>(columns);
+                Map<String, Object> row = new HashMap<String, Object>(columns);
                 for(int i = 1; i <= columns; ++i){
-                    row.put(md.getColumnName(i), cursor.getString(i));
+                    row.put(md.getColumnName(i), cursor.getObject(i));
                 }
 
-                users.add(Deposit.fromRowTable(row));
+                deposits.add(Deposit.fromRowTable(row));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return users;
+        return deposits;
     }
 
     @Override
     public Optional<Deposit> getById(long id) {
         return Optional.empty();
+    }
+
+    public void updateDepositReplenishment(User user, double sum) {
+        System.out.println(sum);
+        try {
+            Statement statement = this.connection.createStatement();
+            String query = String.format(
+                    "UPDATE deposits " +
+                    "SET balance = balance + " + sum +
+                    " WHERE user_id = '" + user.id + "'"
+
+            );
+            System.out.println(query);
+            statement.executeUpdate(
+                    query
+            );
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateDepositReduction(User user, double sum) {
+        System.out.println(sum);
+        try {
+            Statement statement = this.connection.createStatement();
+            String query = String.format(
+                    "UPDATE deposits " +
+                            "SET balance = balance - " + sum +
+                            " WHERE user_id = '" + user.id + "'"
+
+            );
+            System.out.println(query);
+            statement.executeUpdate(
+                    query
+            );
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
     //методы для работы с таблицей Депозиты
 }

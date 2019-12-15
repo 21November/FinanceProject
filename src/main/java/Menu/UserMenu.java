@@ -30,8 +30,9 @@ public class UserMenu {
             out.println(
                     "Please enter one of the next options:\n" +
                             "1 Create deposit\n" +
-                            "2 Get all deposits\n" +
-                            "3 Exit\n" +
+                            "2 Replenish deposit\n" +
+                            "3 Withdrawal from deposit\n" +
+                            "4 Exit\n" +
                             "Chosen option: "
             );
 
@@ -44,9 +45,12 @@ public class UserMenu {
                         this.depositHandler.createDeposit(user);
                         break;
                     case 2:
-                        this.depositHandler.getDeposits();
+                        this.depositHandler.replenishDeposit(user);
                         break;
                     case 3:
+                        this.depositHandler.withdrawalFromDeposit(user);
+                        break;
+                    case 4:
                         flag = false;
                         break;
                 }
@@ -60,3 +64,6 @@ public class UserMenu {
 
     }
 }
+//        1. Создание депозита депозит должен изначально иметь нулевой баланс
+//        2. Пополнение депозита пока без создания транзакций только проставить даты создания и обновления и обновить баланс
+//        3. Вычет из депозита денег пока что без создания транзакции

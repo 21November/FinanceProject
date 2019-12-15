@@ -36,4 +36,21 @@ public class InputProcessor {
     }
 
 
+    public static double replenishDeposit() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println(
+                "Indicate the amount of replenishment of the deposit: ");
+
+        double sum = Double.parseDouble(scanner.nextLine());
+        return sum;
+    }
+
+    public static double withdrawalFromDeposit() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println(
+                "Indicate the amount of withdrawal from the deposit: ");
+
+        double sum = Double.parseDouble(scanner.nextLine());
+        return sum;
+    }
 }
