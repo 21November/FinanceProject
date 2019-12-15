@@ -5,6 +5,7 @@ import halpers.IRepository;
 import users.domain.User;
 
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.*;
 
 public class DepositRepository implements IRepository<Deposit> {
@@ -89,7 +90,8 @@ public class DepositRepository implements IRepository<Deposit> {
             String query = String.format(
                     "UPDATE deposits " +
                     "SET balance = balance + " + sum +
-                    " WHERE user_id = '" + user.id + "'"
+                    ", editDate = '" + Timestamp.valueOf(LocalDateTime.now()) +
+                    "' WHERE user_id = '" + user.id + "'"
 
             );
             System.out.println(query);
@@ -107,8 +109,9 @@ public class DepositRepository implements IRepository<Deposit> {
             Statement statement = this.connection.createStatement();
             String query = String.format(
                     "UPDATE deposits " +
-                            "SET balance = balance - " + sum +
-                            " WHERE user_id = '" + user.id + "'"
+                    "SET balance = balance - " + sum +
+                    ", editDate = '" + Timestamp.valueOf(LocalDateTime.now()) +
+                    "' WHERE user_id = '" + user.id + "'"
 
             );
             System.out.println(query);
