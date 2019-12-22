@@ -83,6 +83,7 @@ public class DepositRepository implements IRepository<Deposit> {
         return Optional.empty();
     }
 
+    //TODO: rename method. Confuding name.
     public void updateDepositReplenishment(User user, double sum) {
         System.out.println(sum);
         try {
@@ -102,7 +103,7 @@ public class DepositRepository implements IRepository<Deposit> {
             e.printStackTrace();
         }
     }
-
+    //TODO: rename method. Look on my comment in handler.
     public void updateDepositReduction(User user, double sum) {
         System.out.println(sum);
         try {

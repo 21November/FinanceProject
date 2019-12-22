@@ -27,10 +27,12 @@ public class DepositService {
         return this.depositRepository.getAll();
     }
 
+    //TODO: Confusing method name. Try to rename it like rainforceDeposit
     public void editDepositReplenishment(User user, double sum) {
         this.depositRepository.updateDepositReplenishment(user, sum);
     }
 
+    //TODO: Confusing method name. Try to rename it like withdrawDeposit
     public void editDepositReduction(User user, double sum) {
         this.depositRepository.updateDepositReduction(user, sum);
     }
