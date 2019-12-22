@@ -54,6 +54,7 @@ public class UserHandler {
         );
 
         UserMenu userMenu = new UserMenu();
+        //TODO: confusing using of method. You are saying userMenu please run and receive myself. please remove user from input params
         userMenu.run(user);
 
     }

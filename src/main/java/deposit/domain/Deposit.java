@@ -17,6 +17,7 @@ public class Deposit extends Domain {
     public double balance;
     public FiatCurrency currency;
     public Timestamp createDate;
+    //TODO: edit date will be usefull after implementing transactions so please remove it now and add another field with name dateClosed.
     public Timestamp editDate;
     public UUID userId;
 
@@ -41,6 +42,8 @@ public class Deposit extends Domain {
     }
 
     public static Deposit fromJSON(Map map){
+        //TODO: no prints should be in methods. Remove please this horrible
+        //  shit. This message is hardcoded so remove it.
         System.out.println("Deposit 1");
         return new Deposit(
                 UUID.randomUUID(),
@@ -54,14 +57,19 @@ public class Deposit extends Domain {
     }
 
     public static Deposit fromRowTable(Map map) {
+        //TODO: no prints should be in methods. Remove please this horrible shit
         System.out.println("method fromROwTable 1");
         Timestamp editDate = Timestamp.valueOf(LocalDateTime.now());
+        //TODO: Is this commented code still needed? Seems like some logic for
+        // edit date were described. For now after commenting each time edit
+        // date will be set even after deposit creation and it is not correct
+        // according to product specification. Please uncomment this.
 //        if (map.get("editDate") != null){
 //            editDate = Timestamp.valueOf(map.get("editDate").toString());
 //        } else {
 //            editDate = null;
 //        }
-
+        //TODO: no prints should be in methods. Remove please this horrible shit
         System.out.println("method fromROwTable 2");
         return new Deposit(
                 UUID.fromString(map.get("id").toString()),

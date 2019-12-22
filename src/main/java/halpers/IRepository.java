@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface IRepository <T> {
+    //TODO: rename on 'create'
     abstract void insert(T t);
 
     abstract void update(T t);

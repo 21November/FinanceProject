@@ -22,6 +22,7 @@ public class UserMenu {
 
 
 
+    //TODO: lets rename all methods for run user menu on 'render' name
     public void run(User user){
 
         boolean flag = true;
@@ -63,7 +64,7 @@ public class UserMenu {
 
 
     }
-}
+//TODO: remove all Russian comments from project. Remove all russian outputs from project.
 //        1. Создание депозита депозит должен изначально иметь нулевой баланс
 //        2. Пополнение депозита пока без создания транзакций только проставить даты создания и обновления и обновить баланс
 //        3. Вычет из депозита денег пока что без создания транзакции
