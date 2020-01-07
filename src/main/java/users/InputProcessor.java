@@ -3,7 +3,6 @@ package users;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.UUID;
 
 public class InputProcessor {
 

@@ -18,10 +18,10 @@ public class DepositHandler {
     }
 
 
-    public void createDeposit(User user) throws Exception {
+    public void createDeposit() throws Exception {
         Map<String, Object> map = InputProcessor.createDeposit();
 
-        map.put("userId", user.id.toString());
+        //map.put("userId", user.id.toString());
         this.depositService.addDeposit(map);
         System.out.println("Deposit create");
     }
@@ -41,22 +41,22 @@ public class DepositHandler {
     }
 
     //TODO: handlers are not receive any input arguments in CLI. since they are only endpoints for start
-    public void replenishDeposit(User user) {
+    public void replenishDeposit() {
         //TODO: confusing name of variable. What exectly heare you are trying to summarize?
         double sum = InputProcessor.replenishDeposit();
         //TODO: will be nice print Deposit before operations since it is a CLI
         //TODO: you should make some search and print deposit and only then make some actions
-        this.depositService.editDepositReplenishment(user, sum);
+        //this.depositService.editDepositReplenishment(user, sum);
         System.out.println("Balance increased");
         //TODO: it will be nice print updated deposit after replenishment
     }
 
     //TODO: confusing name try to rename it to withdrawDeposit
-    public void withdrawalFromDeposit(User user) {
+    public void withdrawalFromDeposit() {
         //TODO: confusing name of variable. What exectly heare you are trying to summarize?
         double sum = InputProcessor.withdrawalFromDeposit();
         //TODO: will be nice print Deposit before operations since it is a CLI
-        this.depositService.editDepositReduction(user, sum);
+        //this.depositService.editDepositReduction(user, sum);
         System.out.println("Balance reduced");
     }
 }

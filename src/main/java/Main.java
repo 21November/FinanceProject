@@ -5,12 +5,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Main {
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws Exception {
 
         TableCreate tableCreate = new TableCreate();
 
-        //tableCreate.tableDelete();
-        //tableCreate.createTableUsers();
+//        tableCreate.tableDelete();
+//        tableCreate.createTableUsers();
 
         MainMenu menu = new MainMenu();
         menu.run();

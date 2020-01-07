@@ -20,8 +20,6 @@ public class TableCreate {
             statement.executeUpdate(
                     "CREATE TABLE IF NOT EXISTS users (" +
                             "id VARCHAR(36) PRIMARY KEY , " +
-                            "firstName VARCHAR(100), " +
-                            "lastName VARCHAR(100), " +
                             "email VARCHAR(100), " +
                             "password VARCHAR(100) " +
                             ")"
@@ -46,10 +44,29 @@ public class TableCreate {
             );
             System.out.println("Создать новую таблицу deposits");
 
-            //"user_id VARCHAR (36), " +
-            //                            "loan_id VARCHAR (36), " +
-            //                            "FOREIGN KEY (user_id) REFERENCES users(id)" +
-            //                            "FOREIGN KEY (loan_id) REFERENCES loans(id)" +
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        try (Statement statement = this.connection.createStatement()) {
+
+            statement.executeUpdate(
+                    "CREATE TABLE IF NOT EXISTS userProfiles (" +
+                            "id VARCHAR(36) PRIMARY KEY , " +
+                            "firstName VARCHAR(100), " +
+                            "lastName VARCHAR(100), " +
+                            "jobTitle VARCHAR(100),  "+
+                            "province VARCHAR(100), " +
+                            "postalCode VARCHAR(100), " +
+                            "country VARCHAR(100), " +
+                            "city VARCHAR(100), " +
+                            "address VARCHAR(100), " +
+                            "user_id VARCHAR (36), " +
+                            "FOREIGN KEY (user_id) REFERENCES users(id)" +
+                            ")"
+            );
+            System.out.println("Создать новую таблицу usersProfiles");
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -83,6 +100,9 @@ public class TableCreate {
 
             statement.executeUpdate("DROP TABLE deposits");
             System.out.println("удаляем таблицу deposits");
+
+            statement.executeUpdate("DROP TABLE userProfiles");
+            System.out.println("удаление таблицы userProfiles");
 
         } catch (SQLException e) {
             e.printStackTrace();
