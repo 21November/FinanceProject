@@ -7,4 +7,4 @@ UserProfile table should containt with next columns: id, firstName, lastName, jo
 After login user should be able update own userProfile. (FPC-1)
 
 ###### `TO_DO`
-2. Introduce method in Domain model for converting model into the map <String, Object> (FPC-2)
+2. Introduce method in Domain model for converting model into the dictionary structure (FPC-2)
