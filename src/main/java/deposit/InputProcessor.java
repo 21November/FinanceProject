@@ -13,6 +13,10 @@ public class InputProcessor {
         Scanner scanner = new Scanner(System.in);
         Map<String, Object> map = new HashMap<>();
         //TODO: some
+
+        System.out.println("please input email: ");
+        map.put("email", scanner.nextLine());
+
         System.out.println(
                 "Choose one of the currencies offered for your deposit: \n" +
                 "USD,\n" +

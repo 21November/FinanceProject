@@ -3,6 +3,7 @@ package deposit.domain;
 
 import halpers.domain.Domain;
 import halpers.domain.FiatCurrency;
+import users.domain.UserId;
 
 
 import java.sql.Timestamp;
@@ -13,24 +14,24 @@ import java.util.UUID;
 
 
 public class Deposit extends Domain {
-    public UUID id;
+    public DepositId id;
     public double balance;
     public FiatCurrency currency;
     public Timestamp createDate;
     //TODO: edit date will be usefull after implementing transactions so please remove it now and add another field with name dateClosed.
     public Timestamp editDate;
-    public UUID userId;
+    public UserId userId;
 
     public Deposit() {
     }
 
     public Deposit(
-            UUID id,
+            DepositId id,
             double balance,
             FiatCurrency currency,
             Timestamp createDate,
             Timestamp editDate,
-            UUID userId
+            UserId userId
 
     ) {
         this.id = id;
@@ -46,12 +47,12 @@ public class Deposit extends Domain {
         //  shit. This message is hardcoded so remove it.
         System.out.println("Deposit 1");
         return new Deposit(
-                UUID.randomUUID(),
+                new DepositId(),
                 0,
                 (FiatCurrency) map.get("currency"),
                 Timestamp.valueOf(LocalDateTime.now()),
                 null,
-                UUID.fromString(map.get("userId").toString())
+                new UserId(map.get("userId").toString())
 
         );
     }
@@ -72,12 +73,13 @@ public class Deposit extends Domain {
         //TODO: no prints should be in methods. Remove please this horrible shit
         System.out.println("method fromROwTable 2");
         return new Deposit(
-                UUID.fromString(map.get("id").toString()),
+                new DepositId(map.get("id").toString()),
                 Double.valueOf(map.get("balance").toString()),
                 FiatCurrency.valueOf(map.get("currency").toString()) ,
                 Timestamp.valueOf(map.get("createDate").toString()),
                 editDate,
-                UUID.fromString(map.get("user_id").toString()));
+                new UserId(map.get("user_id").toString())
+                );
     }
 
     @Override

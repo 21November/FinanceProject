@@ -9,10 +9,10 @@ import java.util.Scanner;
 import static java.lang.System.in;
 import static java.lang.System.out;
 
-public class UserMenu {
+public class DepositMenu {
     private DepositHandler depositHandler;
 
-    public UserMenu() {
+    public DepositMenu() {
         try {
             this.depositHandler = new DepositHandler();
         } catch (SQLException e) {
@@ -23,10 +23,10 @@ public class UserMenu {
 
 
     //TODO: lets rename all methods for run user menu on 'render' name
-    public void run(User user){
+    public void run() {
 
         boolean flag = true;
-        while (flag){
+        while (flag) {
             Scanner scanner = new Scanner(in);
             out.println(
                     "Please enter one of the next options:\n" +
@@ -41,29 +41,26 @@ public class UserMenu {
 
 
             try {
-                switch (option){
+                switch (option) {
                     case 1:
-                        this.depositHandler.createDeposit(user);
+                        this.depositHandler.createDeposit();
                         break;
                     case 2:
-                        this.depositHandler.replenishDeposit(user);
+                        this.depositHandler.replenishDeposit();
                         break;
                     case 3:
-                        this.depositHandler.withdrawalFromDeposit(user);
+                        this.depositHandler.withdrawalFromDeposit();
                         break;
                     case 4:
                         flag = false;
                         break;
                 }
-            }catch (Exception e){
+            } catch (Exception e) {
                 out.println(e.getMessage());
             }
         }
-
-
-
-
     }
+}
 //TODO: remove all Russian comments from project. Remove all russian outputs from project.
 //        1. Создание депозита депозит должен изначально иметь нулевой баланс
 //        2. Пополнение депозита пока без создания транзакций только проставить даты создания и обновления и обновить баланс

@@ -26,14 +26,14 @@ public class UserRepository implements IRepository<User>{
                             "INSERT INTO users" +
                                     "(" +
                                     "id, " +
-                                    "firstName, " +
-                                    "lastName, " +
+//                                    "firstName, " +
+//                                    "lastName, " +
                                     "email, " +
                                     "password)" +
                                     "VALUES('%s', '%s', '%s', '%s', '%s')",
                             user.id,
-                            user.firstName,
-                            user.lastName,
+//                            user.firstName,
+//                            user.lastName,
                             user.email,
                             user.password
                     )
