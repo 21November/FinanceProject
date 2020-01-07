@@ -4,7 +4,7 @@ import java.util.UUID;
 
 public class BaseId {
     private UUID uuid;
-    public String id;
+    private String id;
 
     public BaseId(String id){
         this.id = id;

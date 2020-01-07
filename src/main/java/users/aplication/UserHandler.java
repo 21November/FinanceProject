@@ -24,15 +24,15 @@ public class UserHandler {
 
     public void signUp() throws Exception {
 
-//        Map<String, Object> data = InputProcessor.signUp();
+        Map<String, Object> data = InputProcessor.signUp();
 
-        Map<String, Object> data = Map.of(
-                "firstName", "Bob",
-                "lastName", "Smit",
-                "email", "Smit@gmail.com",
-                "password", "0000",
-                "confirmPassword", "0000"
-        );
+//        Map<String, Object> data = Map.of(
+//                "firstName", "Bob",
+//                "lastName", "Smit",
+//                "email", "Smit@gmail.com",
+//                "password", "0000",
+//                "confirmPassword", "0000"
+//        );
         System.out.println(data);
 
         this.authService.singUp(data);
@@ -43,7 +43,7 @@ public class UserHandler {
         List<User> users = this.userService.getUsers();
         for (int i = 0; i < users.size(); i++){
             System.out.println("User{" +
-                    "id=" + users.get(i).id +
+                    "id=" + users.get(i).id.getUuid() +
                     ", email='" + users.get(i).email + '\'' +
                     '}'
             );
