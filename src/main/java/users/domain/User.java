@@ -31,19 +31,12 @@ public class User extends Domain {
 
     public static User fromJSON(Map map) {
         Base64.Encoder encoder = Base64.getEncoder();
-        System.out.println("before put functional 1");
-        map.put(
-                "password", encoder.encodeToString(
-                    ((String)map.get("password")).getBytes())
+        map.put("password", encoder.encodeToString(
+                ((String)map.get("password")).getBytes())
         );
-        System.out.println("after put 1");
-        map.put(
-                "confirmPassword", encoder.encodeToString(
-                    ((String)map.get("confirmPassword")).getBytes())
+        map.put("confirmPassword", encoder.encodeToString(
+                ((String)map.get("confirmPassword")).getBytes())
         );
-
-        System.out.println("fromJSON");
-
 
         return new User(
                 new UserId(),

@@ -22,7 +22,7 @@ public class MainMenu {
         }
     }
 
-    public void run(){
+    public void run() throws Exception{
 
         boolean flag = true;
         while (flag){
@@ -39,7 +39,7 @@ public class MainMenu {
             int option = scanner.nextInt();
 
 
-            try {
+//            try {
 
                 switch (option){
                     case 1:
@@ -55,9 +55,9 @@ public class MainMenu {
                         flag = false;
                         break;
                 }
-            }catch (Exception e){
-                out.println(e.getMessage());
-            }
+//            }catch (Exception e){
+//                out.println("Error message: " + e.getMessage());
+//            }
         }
 
 

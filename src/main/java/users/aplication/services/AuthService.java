@@ -21,9 +21,7 @@ public class AuthService {
     }
 
     public void singUp(Map data) throws Exception {
-        System.out.println("befor singUp");
         User user = User.fromJSON(data);
-        System.out.println(user);
 
         if (!user.password.equals(user.confirmPassword)){
             throw new Exception("password and confirmPassword are not same");
